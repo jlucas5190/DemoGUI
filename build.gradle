@@ -12,9 +12,10 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'javafx-gradle-plugin'
-//apply plugin: 'netbeans'
 apply plugin: 'idea'
+apply plugin: 'application'
 
+mainClassName = 'org.test.demogui.DemoGUI'
 
 repositories {
     mavenLocal()
@@ -25,7 +26,6 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.6.0-alpha-2'
 }
 
-
 jfx {
     // minimal requirement for jfxJar-task
     mainClass = 'org.test.demogui.DemoGUI'
@@ -33,6 +33,18 @@ jfx {
     // minimal requirement for jfxNative-task
     vendor = 'test'
 } 
+
+jar {
+    doFirst {
+        manifest {
+            if (!configurations.compile.isEmpty()) {
+                attributes(
+                        'Class-Path': configurations.compile.collect{it.toURI().toString()}.join(' '),
+                        'Main-Class': 'org.test.demogui.DemoGUI')
+            }
+        }
+    }
+}
 
 task wrapper(type: Wrapper) {
    gradleVersion = '4.10.2' //version required
