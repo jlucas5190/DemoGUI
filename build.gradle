@@ -8,14 +8,22 @@ buildscript {
 
     }
 }
+
 apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'javafx-gradle-plugin'
+//apply plugin: 'netbeans'
+apply plugin: 'idea'
+
 
 repositories {
     mavenLocal()
     mavenCentral()
 }
 
-apply plugin: 'javafx-gradle-plugin'
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.6.0-alpha-2'
+}
 
 
 jfx {

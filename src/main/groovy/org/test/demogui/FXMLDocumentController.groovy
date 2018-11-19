@@ -5,8 +5,6 @@
  */
 package org.test.demogui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +14,7 @@ import javafx.scene.control.Label;
  *
  * @author joshu
  */
-public class FXMLDocumentController implements Initializable {
+class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label label;
